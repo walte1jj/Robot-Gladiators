@@ -33,10 +33,16 @@ var randomNumber = function(min, max) {
 
   // fight function (now with parameter for enemy's object holding name, health, and attack values)
   var fight = function(enemy) {
+    var isPlayerTurn = true;
+    if (Math.random() > 0.5) {
+      isPlayerTurn = false;
+    }
     while (playerInfo.health > 0 && enemy.health > 0) {
+      if (isPlayerTurn) {
       if (fightOrSkip()) {
         break;
       }
+      
       // ask player if they'd like to fight or run
       var promptFight = window.prompt('Would you like to FIGHT or SKIP this battle? Enter "FIGHT" or "SKIP" to choose.');
   
@@ -94,6 +100,8 @@ var randomNumber = function(min, max) {
         window.alert(playerInfo.name + ' still has ' + playerInfo.health + ' health left.');
       }
     }
+    isPlayerTurn = !isPlayerTurn;
+  }
   };
   
   // function to start a new game
